@@ -26,6 +26,7 @@ namespace Practica_M06
         {
             InitializeComponent();
             fillCombo(comboBox);
+            fillCombo(comboBox1);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -119,9 +120,9 @@ namespace Practica_M06
             }
 
             //Adding DataRow
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            for(int x = 0; x<dataGridView1.Rows.Count - 1; x++)
             {
-                foreach (DataGridViewCell cell in row.Cells)
+                foreach (DataGridViewCell cell in dataGridView1.Rows[x].Cells)
                 {
                     pdfTable.AddCell(cell.Value.ToString());
                 }
@@ -142,6 +143,49 @@ namespace Practica_M06
                 pdfDoc.Close();
                 stream.Close();
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("##### " + comboBox1.Text);
+            entity = new practicam6Entities();
+            this.dataGridView2.AutoGenerateColumns = true;
+            this.dataGridView2.Columns.Clear();
+            //dataGridView1.DataSource = entity.factura;
+            if (comboBox1.Text == "factura")
+            {
+                exportButton.Visible = true;
+
+            }
+            else
+            {
+                exportButton.Visible = false;
+            }
+
+            switch (comboBox1.Text)
+            {
+                case "productes":
+                    dataGridView2.DataSource = entity.productes;
+                    break;
+                case "factura":
+                    dataGridView2.DataSource = entity.factura;
+                    dataGridView2.Columns.RemoveAt(5);
+                    break;
+                case "factura_detall":
+                    dataGridView2.DataSource = entity.factura_detall;
+                    break;
+                case "clients":
+                    dataGridView2.DataSource = entity.clients;
+                    break;
+
+
+            }
+
+        }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
