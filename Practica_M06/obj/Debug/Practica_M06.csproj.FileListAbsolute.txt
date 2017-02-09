@@ -1,0 +1,14 @@
+c:\users\albert\documents\visual studio 2015\Projects\Practica_M06\Practica_M06\bin\Debug\Practica_M06.exe.config
+C:\Users\Albert\documents\visual studio 2015\Projects\Practica_M06\Practica_M06\bin\Debug\Practica_M06.exe
+C:\Users\Albert\documents\visual studio 2015\Projects\Practica_M06\Practica_M06\bin\Debug\Practica_M06.pdb
+C:\Users\Albert\documents\visual studio 2015\Projects\Practica_M06\Practica_M06\bin\Debug\EntityFramework.dll
+C:\Users\Albert\documents\visual studio 2015\Projects\Practica_M06\Practica_M06\bin\Debug\EntityFramework.xml
+C:\Users\Albert\documents\visual studio 2015\Projects\Practica_M06\Practica_M06\obj\Debug\Practica_M06.csprojResolveAssemblyReference.cache
+C:\Users\Albert\documents\visual studio 2015\Projects\Practica_M06\Practica_M06\obj\Debug\Practica_M06.Properties.Resources.resources
+C:\Users\Albert\documents\visual studio 2015\Projects\Practica_M06\Practica_M06\obj\Debug\Practica_M06.csproj.GenerateResource.Cache
+C:\Users\Albert\documents\visual studio 2015\Projects\Practica_M06\Practica_M06\obj\Debug\Practica_M06.exe
+C:\Users\Albert\documents\visual studio 2015\Projects\Practica_M06\Practica_M06\obj\Debug\Practica_M06.pdb
+C:\Users\Albert\documents\visual studio 2015\Projects\Practica_M06\Practica_M06\bin\Debug\MySql.Data.dll
+C:\Users\Albert\documents\visual studio 2015\Projects\Practica_M06\Practica_M06\obj\Debug\Practica_M06.Form1.resources
+C:\Users\Albert\documents\visual studio 2015\Projects\Practica_M06\Practica_M06\bin\Debug\itextsharp.dll
+C:\Users\Albert\documents\visual studio 2015\Projects\Practica_M06\Practica_M06\bin\Debug\itextsharp.xml

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="practicam6ModelStoreContainer" CdmEntityContainer="practicam6Entities">
+    <EntitySetMapping Name="clients">
+      <EntityTypeMapping TypeName="practicam6Model.clients">
+        <MappingFragment StoreEntitySet="clients">
+          <ScalarProperty Name="id_Client" ColumnName="id_Client" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Cognom1" ColumnName="Cognom1" />
+          <ScalarProperty Name="Cognom2" ColumnName="Cognom2" />
+          <ScalarProperty Name="Adreça" ColumnName="Adreça" />
+          <ScalarProperty Name="Codi_Postal" ColumnName="Codi_Postal" />
+          <ScalarProperty Name="Població" ColumnName="Població" />
+          <ScalarProperty Name="Província" ColumnName="Província" />
+          <ScalarProperty Name="Telèfon" ColumnName="Telèfon" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="factura">
+      <EntityTypeMapping TypeName="practicam6Model.factura">
+        <MappingFragment StoreEntitySet="factura">
+          <ScalarProperty Name="n_Factura" ColumnName="n_Factura" />
+          <ScalarProperty Name="id_Client" ColumnName="id_Client" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="Descompte" ColumnName="Descompte" />
+          <ScalarProperty Name="IVA" ColumnName="IVA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="factura_detall">
+      <EntityTypeMapping TypeName="practicam6Model.factura_detall">
+        <MappingFragment StoreEntitySet="factura_detall">
+          <ScalarProperty Name="n_Factura" ColumnName="n_Factura" />
+          <ScalarProperty Name="id_Producte" ColumnName="id_Producte" />
+          <ScalarProperty Name="Quantitat" ColumnName="Quantitat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="productes">
+      <EntityTypeMapping TypeName="practicam6Model.productes">
+        <MappingFragment StoreEntitySet="productes">
+          <ScalarProperty Name="id_Producte" ColumnName="id_Producte" />
+          <ScalarProperty Name="Producte" ColumnName="Producte" />
+          <ScalarProperty Name="Preu" ColumnName="Preu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
