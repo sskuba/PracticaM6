@@ -32,6 +32,7 @@ namespace Practica_M06
         {
             this.dataGridView1.Columns.Clear();
             exportButton.Visible = false;
+            Console.WriteLine("Test");
 
 
         }
@@ -67,7 +68,7 @@ namespace Practica_M06
             if (comboBox.Text == "factura")
             {
                 exportButton.Visible = true;
-                dataGridView1.Columns.RemoveAt(5);
+                
             } else
             {
                 exportButton.Visible = false;
@@ -80,6 +81,7 @@ namespace Practica_M06
                     break;
                 case "factura":
                     dataGridView1.DataSource = entity.factura;
+                    dataGridView1.Columns.RemoveAt(5);
                     break;
                 case "factura_detall":
                     dataGridView1.DataSource = entity.factura_detall;
@@ -119,12 +121,10 @@ namespace Practica_M06
             //Adding DataRow
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-
                 foreach (DataGridViewCell cell in row.Cells)
                 {
                     pdfTable.AddCell(cell.Value.ToString());
                 }
-
             }
 
             //Exporting to PDF
