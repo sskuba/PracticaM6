@@ -79,10 +79,11 @@ namespace Practica_M06
             {
                 case "productes":
                     dataGridView1.DataSource = entity.productes;
+
                     break;
                 case "factura":
                     dataGridView1.DataSource = entity.factura;
-                    dataGridView1.Columns.RemoveAt(5);
+                    //dataGridView1.Columns.RemoveAt(5);
                     break;
                 case "factura_detall":
                     dataGridView1.DataSource = entity.factura_detall;
@@ -169,7 +170,7 @@ namespace Practica_M06
                     break;
                 case "factura":
                     dataGridView2.DataSource = entity.factura;
-                    dataGridView2.Columns.RemoveAt(5);
+                    //dataGridView2.Columns.RemoveAt(5);
                     break;
                 case "factura_detall":
                     dataGridView2.DataSource = entity.factura_detall;
@@ -186,6 +187,91 @@ namespace Practica_M06
         private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+            
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            switch (comboBox1.Text)
+            {
+                case "productes":
+                    dataGridView2.DataSource = entity.productes;
+                    break;
+                case "factura":
+                    dataGridView2.DataSource = entity.factura;
+                    //dataGridView2.Columns.RemoveAt(5);
+                    break;
+                case "factura_detall":
+                    dataGridView2.DataSource = entity.factura_detall;
+                    break;
+                case "clients":
+                    dataGridView2.DataSource = entity.clients;
+                    break;
+
+
+            }
+            DataTable dt = new DataTable();
+            foreach (DataGridViewColumn col in dataGridView2.Columns)
+            {
+                dt.Columns.Add(col.HeaderText);
+            }
+
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                DataRow dRow = dt.NewRow();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    dRow[cell.ColumnIndex] = cell.Value;
+                    Console.WriteLine(cell.Value);
+                }
+                dt.Rows.Add(dRow);
+            }
+
+            DataView ds = new DataView(dt);
+            string outputInfo = "";
+            string[] keyWords = textBox1.Text.Split(' ');
+            bool first = false;
+            foreach (string word in keyWords)
+            {
+                dataGridView2.DataSource = ds;
+                if (outputInfo.Length == 0)
+                {
+                     
+                    outputInfo += "(";
+                    foreach(DataGridViewColumn col in dataGridView2.Columns)
+                    {
+                        if (first)
+                        {
+                            outputInfo += "OR ";
+                        }
+                        outputInfo += col.HeaderText + " LIKE '%" + word + "%' ";
+                        first = true;
+                    }
+                    
+                    outputInfo += ")";
+                }
+                else
+                {
+                    outputInfo += " AND (";
+                    foreach (DataGridViewColumn col in dataGridView2.Columns)
+                    {
+                        if (first)
+                        {
+                            outputInfo += "OR ";
+                        }
+                        outputInfo += col.HeaderText + " LIKE '%" + word + "%' ";
+                        first = true;
+                    }
+
+                    outputInfo += ")";
+                }
+            }
+            ds.RowFilter = outputInfo;
         }
     }
 }
