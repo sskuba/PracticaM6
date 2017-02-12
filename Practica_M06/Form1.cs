@@ -8,8 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data;
-using System.Reflection;
 using System.IO;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
@@ -21,7 +19,9 @@ namespace Practica_M06
     {
 
         practicam6Entities entity;
-        string table = "";
+        /**
+         * Funcions inicials
+         **/
         public Form1()
         {
             InitializeComponent();
@@ -33,10 +33,12 @@ namespace Practica_M06
         {
             this.dataGridView1.Columns.Clear();
             exportButton.Visible = false;
-            Console.WriteLine("Test");
-
 
         }
+
+        /**
+         * Omple el ComboBox amb els noms de les taules de la base de dades
+         **/
         private void fillCombo(ComboBox comboBox)
         {
             var dbCon = DBConnection.Instance();
@@ -49,23 +51,23 @@ namespace Practica_M06
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    string row = "";
                     for (int i = 0; i < reader.FieldCount; i++)
                         comboBox.Items.Add(reader.GetValue(i).ToString());
-
-
                 }
                 reader.Close();
             }
         }
 
+        /**
+         * S'executa quen es selecciona un element de la comboBox. 
+         * Llavors carrega al dataGridView Tota al informació pertanyent a la
+         * taula seleccionada.
+         **/
         private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("##### " + comboBox.Text);
             entity = new practicam6Entities();
             this.dataGridView1.AutoGenerateColumns = true;
             this.dataGridView1.Columns.Clear();
-            //dataGridView1.DataSource = entity.factura;
             if (comboBox.Text == "factura")
             {
                 exportButton.Visible = true;
@@ -79,11 +81,9 @@ namespace Practica_M06
             {
                 case "productes":
                     dataGridView1.DataSource = entity.productes;
-
                     break;
                 case "factura":
                     dataGridView1.DataSource = entity.factura;
-                    //dataGridView1.Columns.RemoveAt(5);
                     break;
                 case "factura_detall":
                     dataGridView1.DataSource = entity.factura_detall;
@@ -91,28 +91,28 @@ namespace Practica_M06
                 case "clients":
                     dataGridView1.DataSource = entity.clients;
                     break;
-
-
             }
-            
-            
         }
 
+        /**
+         * Actualitzaa la bd els canvis realitzats al datagridview.
+         **/
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             entity.SaveChanges();
         }
 
+        /**
+         * Exporta la factura a un PDF. Es pregunta ón es desitja guardar-ho.
+         **/
         private void exportButton_Click(object sender, EventArgs e)
         {
-            //Creating iTextSharp Table from the DataTable data
             PdfPTable pdfTable = new PdfPTable(dataGridView1.ColumnCount);
             pdfTable.DefaultCell.Padding = 3;
             pdfTable.WidthPercentage = 30;
             pdfTable.HorizontalAlignment = Element.ALIGN_LEFT;
             pdfTable.DefaultCell.BorderWidth = 1;
 
-            //Adding Header row
             foreach (DataGridViewColumn column in dataGridView1.Columns)
             {
                 PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
@@ -120,7 +120,6 @@ namespace Practica_M06
                 pdfTable.AddCell(cell);
             }
 
-            //Adding DataRow
             for(int x = 0; x<dataGridView1.Rows.Count - 1; x++)
             {
                 foreach (DataGridViewCell cell in dataGridView1.Rows[x].Cells)
@@ -129,30 +128,34 @@ namespace Practica_M06
                 }
             }
 
-            //Exporting to PDF
-            string folderPath = "C:\\PDFs\\";
-            if (!Directory.Exists(folderPath))
+            var fbd = new FolderBrowserDialog();
+            DialogResult result = fbd.ShowDialog();
+
+            if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
             {
-                Directory.CreateDirectory(folderPath);
-            }
-            using (FileStream stream = new FileStream(folderPath + "DataGridViewExport.pdf", FileMode.Create))
-            {
-                Document pdfDoc = new Document(PageSize.A2, 10f, 10f, 10f, 0f);
-                PdfWriter.GetInstance(pdfDoc, stream);
-                pdfDoc.Open();
-                pdfDoc.Add(pdfTable);
-                pdfDoc.Close();
-                stream.Close();
+                string folderPath = fbd.SelectedPath;
+                using (FileStream stream = new FileStream(folderPath + "\\DataGridViewExport.pdf", FileMode.Create))
+                {
+                    Document pdfDoc = new Document(PageSize.A2, 10f, 10f, 10f, 0f);
+                    PdfWriter.GetInstance(pdfDoc, stream);
+                    pdfDoc.Open();
+                    pdfDoc.Add(pdfTable);
+                    pdfDoc.Close();
+                    stream.Close();
+                }
             }
         }
 
+        /**
+         * S'executa quen es selecciona un element de la comboBox. 
+         * Llavors carrega al dataGridView Tota al informació pertanyent a la
+         * taula seleccionada.
+         **/
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("##### " + comboBox1.Text);
             entity = new practicam6Entities();
             this.dataGridView2.AutoGenerateColumns = true;
             this.dataGridView2.Columns.Clear();
-            //dataGridView1.DataSource = entity.factura;
             if (comboBox1.Text == "factura")
             {
                 exportButton.Visible = true;
@@ -170,7 +173,6 @@ namespace Practica_M06
                     break;
                 case "factura":
                     dataGridView2.DataSource = entity.factura;
-                    //dataGridView2.Columns.RemoveAt(5);
                     break;
                 case "factura_detall":
                     dataGridView2.DataSource = entity.factura_detall;
@@ -178,8 +180,6 @@ namespace Practica_M06
                 case "clients":
                     dataGridView2.DataSource = entity.clients;
                     break;
-
-
             }
 
         }
@@ -195,7 +195,52 @@ namespace Practica_M06
             
         }
 
+       
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
+            DataTable dst = new DataTable();
+
+            foreach (DataGridViewColumn col in dataGridView2.Columns)
+            {
+                dst.Columns.Add(col.HeaderText);
+            }
+
+
+            for (int x = 0; x < dataGridView1.Rows.Count - 1; x++)
+            {
+                DataRow dRow = dst.NewRow();
+                foreach (DataGridViewCell cell in dataGridView1.Rows[x].Cells)
+                {
+                    
+                    dRow[cell.ColumnIndex] = cell.Value;
+                }
+                dst.Rows.Add(dRow);
+            }
+            
+            dst.TableName = "Objectes";
+            var fbd = new FolderBrowserDialog();
+            DialogResult result = fbd.ShowDialog();
+
+            if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+            {
+                string folderPath = fbd.SelectedPath;
+                Console.WriteLine(folderPath);
+                dst.WriteXml(folderPath + @"\ExportedXML.xml", true);
+            }
+
+            
+            
+        }
+
+        /**
+        * Filtra el que escrius al TextBox.
+        **/
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
             switch (comboBox1.Text)
             {
@@ -204,7 +249,6 @@ namespace Practica_M06
                     break;
                 case "factura":
                     dataGridView2.DataSource = entity.factura;
-                    //dataGridView2.Columns.RemoveAt(5);
                     break;
                 case "factura_detall":
                     dataGridView2.DataSource = entity.factura_detall;
@@ -241,9 +285,9 @@ namespace Practica_M06
                 dataGridView2.DataSource = ds;
                 if (outputInfo.Length == 0)
                 {
-                     
+
                     outputInfo += "(";
-                    foreach(DataGridViewColumn col in dataGridView2.Columns)
+                    foreach (DataGridViewColumn col in dataGridView2.Columns)
                     {
                         if (first)
                         {
@@ -252,7 +296,7 @@ namespace Practica_M06
                         outputInfo += col.HeaderText + " LIKE '%" + word + "%' ";
                         first = true;
                     }
-                    
+
                     outputInfo += ")";
                 }
                 else
