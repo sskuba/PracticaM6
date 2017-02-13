@@ -40,3 +40,17 @@ C:\Users\Albert\Documents\Visual Studio 2015\Projects\Practica_M06\PracticaM6\Pr
 C:\Users\Albert\Documents\Visual Studio 2015\Projects\Practica_M06\PracticaM6\Practica_M06\obj\Debug\Practica_M06.Form1.resources
 C:\Users\Albert\Documents\Visual Studio 2015\Projects\Practica_M06\PracticaM6\Practica_M06\obj\Debug\Practica_M06.Properties.Resources.resources
 C:\Users\Albert\Documents\Visual Studio 2015\Projects\Practica_M06\PracticaM6\Practica_M06\obj\Debug\Practica_M06.csproj.GenerateResource.Cache
+C:\Users\sskub\OneDrive\Documentos\Visual Studio 2015\Projects\PracticaM6\PracticaM6\Practica_M06\bin\Debug\Practica_M06.exe.config
+C:\Users\sskub\OneDrive\Documentos\Visual Studio 2015\Projects\PracticaM6\PracticaM6\Practica_M06\bin\Debug\Practica_M06.exe
+C:\Users\sskub\OneDrive\Documentos\Visual Studio 2015\Projects\PracticaM6\PracticaM6\Practica_M06\bin\Debug\Practica_M06.pdb
+C:\Users\sskub\OneDrive\Documentos\Visual Studio 2015\Projects\PracticaM6\PracticaM6\Practica_M06\bin\Debug\EntityFramework.dll
+C:\Users\sskub\OneDrive\Documentos\Visual Studio 2015\Projects\PracticaM6\PracticaM6\Practica_M06\bin\Debug\itextsharp.dll
+C:\Users\sskub\OneDrive\Documentos\Visual Studio 2015\Projects\PracticaM6\PracticaM6\Practica_M06\bin\Debug\MySql.Data.dll
+C:\Users\sskub\OneDrive\Documentos\Visual Studio 2015\Projects\PracticaM6\PracticaM6\Practica_M06\bin\Debug\EntityFramework.xml
+C:\Users\sskub\OneDrive\Documentos\Visual Studio 2015\Projects\PracticaM6\PracticaM6\Practica_M06\bin\Debug\itextsharp.xml
+C:\Users\sskub\OneDrive\Documentos\Visual Studio 2015\Projects\PracticaM6\PracticaM6\Practica_M06\obj\Debug\Practica_M06.csprojResolveAssemblyReference.cache
+C:\Users\sskub\OneDrive\Documentos\Visual Studio 2015\Projects\PracticaM6\PracticaM6\Practica_M06\obj\Debug\Practica_M06.Form1.resources
+C:\Users\sskub\OneDrive\Documentos\Visual Studio 2015\Projects\PracticaM6\PracticaM6\Practica_M06\obj\Debug\Practica_M06.Properties.Resources.resources
+C:\Users\sskub\OneDrive\Documentos\Visual Studio 2015\Projects\PracticaM6\PracticaM6\Practica_M06\obj\Debug\Practica_M06.csproj.GenerateResource.Cache
+C:\Users\sskub\OneDrive\Documentos\Visual Studio 2015\Projects\PracticaM6\PracticaM6\Practica_M06\obj\Debug\Practica_M06.exe
+C:\Users\sskub\OneDrive\Documentos\Visual Studio 2015\Projects\PracticaM6\PracticaM6\Practica_M06\obj\Debug\Practica_M06.pdb

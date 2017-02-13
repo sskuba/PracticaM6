@@ -52,6 +52,7 @@
             this.productesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.clientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.facturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.tabPage4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -76,7 +77,7 @@
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(727, 253);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.Text = "Modificador";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
@@ -133,13 +134,15 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnCount = 4;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.95382F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.71284F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 141F));
             this.tableLayoutPanel2.Controls.Add(this.comboBox, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnGuardar, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.exportButton, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.button1, 3, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 212);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -154,16 +157,16 @@
             this.comboBox.FormattingEnabled = true;
             this.comboBox.Location = new System.Drawing.Point(3, 3);
             this.comboBox.Name = "comboBox";
-            this.comboBox.Size = new System.Drawing.Size(232, 21);
+            this.comboBox.Size = new System.Drawing.Size(185, 21);
             this.comboBox.TabIndex = 0;
             this.comboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
             // btnGuardar
             // 
             this.btnGuardar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGuardar.Location = new System.Drawing.Point(479, 3);
+            this.btnGuardar.Location = new System.Drawing.Point(331, 3);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(233, 26);
+            this.btnGuardar.Size = new System.Drawing.Size(239, 26);
             this.btnGuardar.TabIndex = 1;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -172,9 +175,9 @@
             // exportButton
             // 
             this.exportButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.exportButton.Location = new System.Drawing.Point(241, 3);
+            this.exportButton.Location = new System.Drawing.Point(194, 3);
             this.exportButton.Name = "exportButton";
-            this.exportButton.Size = new System.Drawing.Size(232, 26);
+            this.exportButton.Size = new System.Drawing.Size(131, 26);
             this.exportButton.TabIndex = 2;
             this.exportButton.Text = "Exportar PDF";
             this.exportButton.UseVisualStyleBackColor = true;
@@ -282,6 +285,17 @@
             // 
             this.facturaBindingSource.DataSource = typeof(Practica_M06.factura);
             // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Location = new System.Drawing.Point(576, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(136, 26);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Importar desde XML";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -289,7 +303,7 @@
             this.ClientSize = new System.Drawing.Size(735, 279);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Gestor de base de datos";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabPage4.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -334,6 +348,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button buttonExport;
+        private System.Windows.Forms.Button button1;
     }
 }
 

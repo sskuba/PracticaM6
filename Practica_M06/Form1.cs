@@ -11,12 +11,16 @@ using System.Windows.Forms;
 using System.IO;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Practica_M06
 {
-    
+
     public partial class Form1 : Form
     {
+        DataView ds;
+        DataTable dt;
 
         practicam6Entities entity;
         /**
@@ -71,7 +75,7 @@ namespace Practica_M06
             if (comboBox.Text == "factura")
             {
                 exportButton.Visible = true;
-                
+
             } else
             {
                 exportButton.Visible = false;
@@ -120,7 +124,7 @@ namespace Practica_M06
                 pdfTable.AddCell(cell);
             }
 
-            for(int x = 0; x<dataGridView1.Rows.Count - 1; x++)
+            for (int x = 0; x < dataGridView1.Rows.Count - 1; x++)
             {
                 foreach (DataGridViewCell cell in dataGridView1.Rows[x].Cells)
                 {
@@ -191,38 +195,24 @@ namespace Practica_M06
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            
-            
+
+
         }
 
-       
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void buttonExport_Click(object sender, EventArgs e)
         {
-            DataTable dst = new DataTable();
-
-            foreach (DataGridViewColumn col in dataGridView2.Columns)
-            {
-                dst.Columns.Add(col.HeaderText);
-            }
+            DataTable dT = GetDataTableFromDGV(dataGridView2);
+            DataSet dS = new DataSet(comboBox1.Text);
+            dS.Tables.Add(dT);
 
 
-            for (int x = 0; x < dataGridView1.Rows.Count - 1; x++)
-            {
-                DataRow dRow = dst.NewRow();
-                foreach (DataGridViewCell cell in dataGridView1.Rows[x].Cells)
-                {
-                    
-                    dRow[cell.ColumnIndex] = cell.Value;
-                }
-                dst.Rows.Add(dRow);
-            }
-            
-            dst.TableName = "Objectes";
+
             var fbd = new FolderBrowserDialog();
             DialogResult result = fbd.ShowDialog();
 
@@ -230,12 +220,47 @@ namespace Practica_M06
             {
                 string folderPath = fbd.SelectedPath;
                 Console.WriteLine(folderPath);
-                dst.WriteXml(folderPath + @"\ExportedXML.xml", true);
+                System.IO.FileStream streamWrite = new System.IO.FileStream(folderPath + @"\" + comboBox1.Text + ".xml", System.IO.FileMode.Create);
+
+                dS.WriteXml(streamWrite);
+                streamWrite.Close();
+
+
             }
 
-            
-            
+
+
         }
+
+        private DataTable GetDataTableFromDGV(DataGridView dgv)
+        {
+            var dt = new DataTable();
+            dt.TableName = "Row";
+            foreach (DataGridViewColumn column in dgv.Columns)
+            {
+                if (column.Visible)
+                {
+                    // You could potentially name the column based on the DGV column name (beware of dupes)
+                    // or assign a type based on the data type of the data bound to this DGV column.
+                    dt.Columns.Add();
+                    dt.Columns[column.Index].ColumnName = column.Name;
+                }
+            }
+
+            object[] cellValues = new object[dgv.Columns.Count];
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                for (int i = 0; i < row.Cells.Count; i++)
+                {
+                    cellValues[i] = row.Cells[i].Value;
+                }
+                dt.Rows.Add(cellValues);
+            }
+
+            return dt;
+        }
+
+
 
         /**
         * Filtra el que escrius al TextBox.
@@ -259,7 +284,7 @@ namespace Practica_M06
 
 
             }
-            DataTable dt = new DataTable();
+            dt = new DataTable();
             foreach (DataGridViewColumn col in dataGridView2.Columns)
             {
                 dt.Columns.Add(col.HeaderText);
@@ -316,6 +341,37 @@ namespace Practica_M06
                 }
             }
             ds.RowFilter = outputInfo;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "XML Files|*.xml";
+            dlg.Title = "Select a XML File";
+
+            dlg.ShowDialog();
+            XDocument xDoc = XDocument.Load(dlg.FileName);
+            //List<productes> pr = xDoc.Descendants("productes").
+            //        Select(Row =>
+            //            new productes
+            //            {
+            //                id_Producte = Convert.ToInt32(Row.Element("id_Producte").Value),
+            //                Producte = Row.Element("Producte").Value,
+            //                Preu = Convert.ToDecimal(Row.Element("Preu").Value)
+            //            }).ToList();
+
+           
+
+            
+            
+            
+
+            //foreach (productes p in pr)
+            //{
+            //    entity.productes.AddObject(p);
+            //}
+            //entity.SaveChanges();
+            //} catch (Exception) { Console.WriteLine("Error"); }
         }
     }
 }
